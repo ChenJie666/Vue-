@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--将数据渲染到页面上-->
+    <div id="app">
+        <p>{{title}}</p>
+        {{fn1()}}
+        {{age}}
+        <p>{{age>18?'成年':'未成年'}}</p>
+       
+        <button v-on:click="fn3()">按钮</button>
+    </div>
+    
+    <!--引入js  "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data: {
+            title:'helloworld',
+            age:15
+        },
+        methods:{
+            fn1:function(){
+                console.log("方法调用成功");
+            },
+            fn2:function(){
+                console.log(this)
+            },
+            fn3:function(){
+                this.age=20
+            }
+        }
+    })
+
+    console.log(vm.title)
+    console.log(vm.$data.title)
+    console.log(vm)
+    vm.fn1()
+    vm.fn2()
+</script>
+
+</body>
+</html>

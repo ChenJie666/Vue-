@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-bind
+    作用：绑定标签的任何属性
+    场景：当标签的属性值是不确定的，可以修改
+    语法：v-bind：要绑定的属性名="data中的数据"
+    简写：去掉v-bind，直接 :src 即可
+    -->
+    <div id="app">
+        <p v-bind:id="ID">内容</p>
+        <img :src="SRC" alt="蒸虾">
+
+        <!-- 特殊情况是class和style属性，可以有多个值 -->
+        <!-- 绑定class方式一：如果为类名为true则生效，类名为false则失效 -->
+        <p :class="{name1:a,name2:b}">判断类名是否有效</p>
+        <!-- 绑定class方式二：通过给类名变量赋值，传入类名 -->
+        <p :class="[n1,n2]">为类名变量赋值</p>
+        <!-- 绑定class方式三：整合上两种方式，给类名变量赋值，参数类型为tuple，为true则生效，为false则失效 -->
+        <p :class="[nObj1,nObj2]"></p>
+
+        <!-- 绑定style方式一 通过变量为syle属性赋值 -->
+        <p :style="{fontSize:f,color:c}">style方式一</p>
+        <!-- 绑定style方式二  -->
+        <p :style="[d,e]">style方式二</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                ID:'newID',
+                SRC:"http://116.62.148.11:81/menulist/zhengxia/zhengxia.png",
+                a:true,
+                b:false,
+                n1:"name1",
+                n2:"name2",
+                nObj1:{
+                    name1:false
+                },
+                nObj2:{
+                    name2:true
+                },
+
+                f:'30px',
+                c:'red',
+                d:{
+                    fontSize:'30px'
+                },
+                e:{
+                    color:'pink'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

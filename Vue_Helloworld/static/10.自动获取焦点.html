@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 需要给dom元素设置ref属性，mounted方法可以更加ref属性拿到对应的dom -->
+        <input type="text" ref="foc">        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+
+            },
+            methods:{
+
+            },
+            //该方法会在页面渲染完成后调用，取到对应名字的dom，调用focus方法完成自动聚焦
+            mounted(){
+                console.log(this.$refs.foc)
+                this.$refs.foc.focus()
+            }
+        })
+    </script>
+</body>
+</html>

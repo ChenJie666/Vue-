@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 解决插值表达式{{}}页面闪烁的问题 
+        1.给闪烁的标签设置v-clock
+        2.在style样式中指定display为none
+        备注：可以直接给div标签添加v-clock属性，即<div id="app" v-cloak>，标签的内容都不会闪烁
+        -->
+        <p v-cloak>{{msg}}</p>
+
+        <!-- 标签只需要渲染一次，添加v-once指令。那么msg值改变也不会重新渲染 -->
+        <p v-once>{{msg}}</p>
+        <input type="text" v-model="msg">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:'解决插值表达式{{}}页面闪烁的问题'
+            }
+        })
+    </script>
+</body>
+</html>

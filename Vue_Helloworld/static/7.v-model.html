@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-model用于表单元素的绑定,表单中元素变化会导致v-model绑定的变量变化 -->
+<div id="app">
+    {{name}}:
+    <input type="text" v-model="name">
+    <br>
+    <!-- 其他表单元素，多行、单选、复选、下拉等等 -->
+    <!-- 多行表单 -->
+    {{msg}}
+    <textarea v-model="msg"></textarea>
+    <br>
+    <!-- 单个复选框，绑定bool值 -->
+    {{check}}
+    <input type="checkbox" v-model="check">
+    <br>
+    <!-- 多个复选框，绑定数组，数组中会放入选中框的value值 -->
+    {{checklist}}
+    <input type="checkbox" value="male" v-model="checklist">M
+    <input type="checkbox" value="female" v-model="checklist">F
+    <input type="checkbox" value="other" v-model="checklist">O
+    <br>
+    <!-- 单选框,绑定字符串，字符串会被赋值选定的框的value值 -->
+    {{picked}}
+    <input type="radio" value="查找" v-model="picked">A
+    <input type="radio" value="删除" v-model="picked">B
+    <br>
+    <!-- 下拉框,绑定字符串，字符串会被赋值选定的框的value值 -->
+    {{select}}
+    <select v-model="select">
+        <!-- disabled表示无法选中，select和value为一样都为空，则显示该标签的内容 -->
+        <option disabled value="">请选择</option>
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="杭州">杭州</option>
+    </select>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            name: 'name',
+            msg: '多行输入框',
+            check: true,
+            checklist: ["female"],
+            picked:'',
+            select:''
+        }
+    })
+</script>
+
+</body>
+</html>

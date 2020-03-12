@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //全局自定义指令(设置自定义聚焦指令v-focus)
+        //1.在new Vue之前，Vue.directive('指令名',{inserted(el){}})
+        //2.inserted(el){自定义指令具体功能}
+        //使用该指令的dom元素被插入到页面汇中时，会自动触发inserted
+        //3.在视图中v-指令名
+        //获取焦点
+        Vue.directive('focus',{
+                inserted(el){
+                    console.log(el)
+                    el.focus()
+                }
+        })
+        new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+</html>

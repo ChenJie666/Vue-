@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过v-if判断条件是否符合，符合则展示标签中的内容 -->
+        <p v-if="type ==='A'">{{str1}}</p>
+        <p v-else-if="type ==='B'">{{str2}}</p>
+        <p v-else>{{str3}}</p>
+        <p>{{type}}</p>
+        <button @click="fn1()">buttonA</button>
+        <button v-on:click="fn2()">buttonB</button>
+        <!-- v-show和v-if类似，判断是否符合条件，通过切换标签display属性来展示或隐藏标签 -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                str1:"type是A",
+                str2:"type是B",
+                str3:"type不是AB",
+                type:"A"
+            },
+            methods:{
+                fn1(){
+                    this.type="B"
+                },
+                fn2(){
+                    this.type="C"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

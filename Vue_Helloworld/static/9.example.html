@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale">
+    <!-- border-collapse有两个属性separate/collapse,决定表格的边框是分开的还是合并的 -->
+    <style>
+        #app {
+            width: 600xp;
+            margin: 10px auto;
+        }
+
+        .tb {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tb th {
+            background-color: #0094ff;
+            color: white;
+        }
+
+        .tb td,
+        .tb th {
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .add {
+            padding: 5px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="app"> -->
+        <div class="add">
+            品牌名称：
+            <input type="text">
+            <input type="button" value="添加">
+        </div>
+
+        <div class="add">
+            品牌名称：
+            <!-- placeholder是占位符 -->
+            <input type="text" placeholder="请输入搜索条件">
+        </div>
+
+        <div>
+            <table class="tb">
+                <tr>
+                    <!-- th标签会将文本加粗显示 -->
+                    <th>编号</th>
+                    <th>品牌名称</th>
+                    <th>创立时间</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>LV</td>
+                    <td>2020-1-1</td>
+                    <td>
+                        <!-- href是超链接属性,#是无意义的,但是会将文本以超链接的形式展示 -->
+                        <a href="#">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- colspan合并四个单元格 -->
+                    <td colspan="4">没有品牌数据</td>
+                </tr>
+            </table>
+        </div>
+
+  <!--  </div>
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+    </script> -->
+
+</body>
+</html>

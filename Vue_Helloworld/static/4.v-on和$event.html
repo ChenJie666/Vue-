@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- $event代表当前事件 -->
+        <button @click="fn1($event)">控制台打印事件</button>
+        <br>
+        <br>
+        <!-- @事件名.修饰符="methods中的方法"  once和prevent最常用-->
+        <button @click.once="fn2('once,只能调用一次')">打印文本</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                fn1(e){
+                    console.log(e)
+                },
+                fn2(s){
+                    console.log(s)
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

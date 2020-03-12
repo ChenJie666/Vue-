@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <p>{{msg | toUpper}}</p>
+        <p>{{date | fmtDate("日期：")}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/moment"></script>
+    <script>
+        //全局过滤器,可以使用在插值{{}}和v-bind中
+        //需要定义在new Vue之前
+        Vue.filter('toUpper',(v)=>{
+            return v.toUpperCase()
+        })
+        Vue.filter('fmtDate',(v,k)=>{
+            return k + moment(v).format('YYYY-MM-DD hh:mm:ss')
+            // return dateFormat("YYYY-MM-DD hh:mm:ss",this.date)
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"abc",
+                date:new Date()
+            }
+        })
+    </script>
+</body>
+</html>

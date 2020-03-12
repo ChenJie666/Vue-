@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+            <br>
+            <!-- list类型数组，可以取到每个元素的值和下标 -->
+            <li v-for="(item,index) in list">{{item}}---{{index}}</li>
+            <br>
+            <!-- per类型键值对数据，其结构为value、(value,key)和(value,key,index) -->
+            <li v-for="(v,k,i) in per">{{k}}--{{v}}--{{i}}</li>
+        </ul>
+        <!--除了表格遍历，也可以用<p>标签-->
+        <br>
+        <p v-for="(v,k,i) in per">{{k}}--{{v}}--{{i}}</p>
+        <br>
+        <url>
+            <!-- key标签中的值是唯一的，作用是：vue渲染页面的时，根据key的标识找到每个元素，效率更高 -->
+            <li v-for="(v,k,i) in per" :key="i">{{v}}</li>
+        </url>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                list:['查找','增加','修改','删除'],
+                per:{
+                    id:1,
+                    name:'zhangsan',
+                    age:'29',
+                    gender:'male'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

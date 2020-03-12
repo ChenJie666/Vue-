@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .name{
+        color:tomato
+    }
+</style>
+<body>
+    <div id="app">
+        <p :class="{name:a}">内容</p>
+        <button v-on:click="reverseBool()">按钮</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                a:true
+            },
+            methods:{
+                reverseBool(){
+                    this.a = !this.a
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
+
+<!--
+    动态切换class名:
+    1.通过v-bind指令给标签绑定类名，在data中指定变量类型。
+    2.设置按钮绑定事件，如果点击按钮会改变类名
+    3.如果类名匹配上style中的类名，字体颜色发生改变。
+
+    技巧：可以直接用@click="a=!a" 在指令中设置取反，而不用再写函数。
+-->

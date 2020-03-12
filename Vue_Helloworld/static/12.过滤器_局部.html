@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <p>{{date | fmtDate("date：")}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/moment"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                date:new Date()
+            },
+            filters:{
+                //第一个参数是传入的值，后续是自定义参数
+                fmtDate(v,k){
+                    return k + moment(v).format('YYYY-MM-DD hh:mm:ss')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
