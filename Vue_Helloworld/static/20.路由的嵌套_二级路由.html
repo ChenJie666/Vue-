@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .router-link-exact-active.router-link-active{
+            color: crimson;
+        }
+        /*float: left标签显示在一行；list-style: none去掉文字前的圆点*/
+        li{
+            float: left;
+            list-style: none;
+        }
+        /*text-decoration: none去掉下划线*/
+        a{
+            text-decoration: none;
+        }
+        .container{
+            height: 100px;
+            border: 1px solid black;
+        }
+        /*clear: both清除前面设置的float:left*/
+        .container-sub{
+            clear: both;
+            height: 50px;
+            border: 1px solid green
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <router-link to="/home" tag="li"><a>首页</a></router-link>
+            <router-link to="/hot" tag="li"><a>热点</a></router-link>
+            <router-link to="/music" tag="li"><a>音乐</a></router-link>
+        </ul>
+        <br>
+        <!--给组件设置样式-->
+        <router-view class="container"></router-view>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        //一级组件的渲染
+        var home = {
+            template: `<div>首页首页</div>`
+        }
+        var hot = {
+            template: `<div>热点热点</div>`
+        }
+        var music = {
+            template: 
+            `<div>
+                <router-link to="/music/classic" tag="li"><a>古典</a></router-link>
+                <router-link to="/music/pop" tag="li"><a>流行</a></router-link>
+                <router-link to="/music/jazz" tag="li"><a>爵士</a></router-link> 
+                <br>
+                <router-view class="container-sub"></router-view>
+            </div>`
+        }
+        //二级组件的渲染
+        var musicsub = {
+            template:
+            `
+            <div>musicsub:{{this.$route.params.id}}</div>
+            `
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {
+                    name:'home',
+                    path:'/home',
+                    component:home
+                },
+                {
+                    name:'hot',
+                    path:'/hot',
+                    component:hot
+                },
+                {
+                    name:'music',
+                    path:'/music',
+                    component:music,
+                    //children用法和routes是一样的
+                    children:[
+                        {
+                            path:'/music/:id',
+                            component:musicsub
+                        }
+                    ]
+                }
+            ]
+        })
+
+
+        new Vue({
+            el: "#app",
+            router:router
+        })
+    </script>
+</body>
+</html>
+
+<!--
+    将一级路由中的组件中再添加一个组件。
+    在路由对象中添加children属性，绑定二级路由的路径和组件。
+-->

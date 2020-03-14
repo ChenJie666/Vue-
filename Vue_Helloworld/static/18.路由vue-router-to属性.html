@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过不同的to属性写法匹配组件 -->
+        <!-- 写死路径进行匹配 -->
+        <router-link to="/aaa">AAA</router-link>
+        <!-- 通过v-bind传入参数 -->
+        <router-link :to="user">BBB</router-link>
+        <!-- 传入对象,通过path匹配可以省略#和/ -->
+        <router-link :to="{path:'ccc'}">CCC</router-link>
+        <!-- 传入对象，通过name进行匹配(#和/不能省略) -->
+        <router-link :to="{name:'xxx'}">DDD</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var comA = {
+            template:`<div>AAAAA</div>`
+        }
+        var comB = {
+            template:`<div>BBBBB</div>`
+        }
+        var comC = {
+            template:`<div>CCCCC</div>`
+        }
+        var comD = {
+            template:`<div>DDDDD</div>`
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {
+                    path: '/aaa',
+                    component: comA                
+                },
+                {
+                    path: '/bbb',
+                    component: comB
+                },
+                {
+                    path: '/ccc',
+                    component: comC
+                },
+                {
+                    name: 'xxx',
+                    path: '/dd',
+                    component: comD
+                }
+            ]
+        })
+
+        new Vue({
+            el:"#app",
+            router:router,
+            data:{
+                user:'bbb'
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

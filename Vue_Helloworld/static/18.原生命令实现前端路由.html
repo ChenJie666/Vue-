@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- #aaa表示location中的哈希路由，会在原路径下添加#aaa -->
+            <li><a href="#/aaa">AAA</a></li>
+            <li><a href="#/bbb">BBB</a></li>
+            <li><a href="#/ccc">CCC</a></li>
+        </ul>
+        <div id="container">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //获取标签元素
+        var div = document.getElementById('container')
+        //监听窗口的hash值是否改变，如果发生改变，会触发方法
+        window.onhashchange = function(){
+            var hash = location.hash
+            console.log(hash)
+
+            hash = hash.replace("#","")
+            console.info(hash)
+            switch(hash){
+                case '/aaa':
+                    div.innerText = "AAAAA"
+                    break;
+                case '/bbb':
+                    div.innerText = "BBBBB"
+                    break;
+                case '/ccc':
+                    div.innerText = "CCCCC"
+                    break;
+                default:
+                    break;
+            }
+        }
+
+      
+    </script>
+
+</body>
+</html>
+
+<!--
+    过程：
+    1.点击超链接后改变url的标识 
+    2.通过window.onhashchange监听标识变化，发生变化则回调函数进行处理
+    3.函数中根据location.hash获取hash值，渲染对应的组件或内容
+-->

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <!-- <ul>
+        <li><a href="#/aaa">AAA</a></li>
+        <li><a href="#/bbb">BBB</a></li>
+        <li><a href="#/ccc">CCC</a></li>
+    </ul>
+    <div id="container"> -->
+        <!-- 通过router提供的标签实现路由 -->
+        <router-link to="/aaa">AAA</router-link>
+        <router-link to="/bbb">BBB</router-link>
+        <router-link to="/ccc">CCC</router-link>
+
+        <!-- <div id="container">
+        </div> -->
+        <!-- 通过router提供的标签设置组件容器 -->
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        //提供组件(也可以直接写到router中)
+        var comA = {
+            template: `<div>AAAAA</div>`
+        }
+        var comB = {
+            template: `<div>BBBBB</div>`
+        }
+        var comC = {
+            template: `<div>CCCCC</div>`
+        }
+        //路由的实例化
+        var router = new VueRouter({
+            routes:[
+                {
+                    //配置路由,根据路径配置不同的路由
+                    path:'/aaa',
+                    component:comA
+                },
+                {
+                    //配置路由
+                    path:'/bbb',
+                    component:comB
+                },
+                {
+                    //配置路由
+                    path:'/ccc',
+                    component:comC
+                }
+            ]
+        })
+        //在vue对象中挂载路由
+        new Vue({
+            el:"#app",
+            router:router
+        })
+
+    </script>
+</body>
+</html>
+
+<!--
+    通过vue-router.js模块提供的标签实现路由(引入vue-router的CDN路径)：
+    1.通过<router-link to="/aaa">AAA</router-link>绑定跳转
+    2.<router-view></router-view>即是组件的位置
+    3.路由实例化，将哈希路径和自定义的组件绑定在一起，一旦哈希变化，就会渲染为哈希对应的组件
+    4.在vue中挂载创建的路由对象
+-->

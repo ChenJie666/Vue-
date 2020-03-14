@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span-btn></span-btn>
+        <span-btn></span-btn>
+        <span-btn></span-btn>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //全局组件：1.在newVue之前定义 2.命名规范：xxx-xx 3.全局组件可以用在局部组件中
+        //将共同的结构提取出来创建组件，组件可以复用，组件之间相互独立
+        //组件可以让我们复用已有的html、css、js
+        Vue.component('span-btn',{
+            template:
+                //要求有一个根元素
+                `
+                <div>
+                <span>{{count}}</span> 
+                <button v-on:click="changeCount">按钮</button>
+                <br>
+                </div>
+                `
+                ,
+            //data数据必须是一个函数且只有一个返回值，这样每个组件的数据都有自己的作用域
+            data(){
+                return{
+                    count:0
+                }
+            },
+            methods:{
+                changeCount(){
+                    this.count++
+                }
+            }
+        });
+
+        new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

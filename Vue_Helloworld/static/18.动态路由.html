@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/basketball">篮球</router-link>
+        <router-link to="/football">足球</router-link>
+        <router-link to="/tennis">网球</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var Ball = {
+            template: `<div>球类运动:{{$route.params.content}}</div>`
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {
+                    //动态路由，匹配/:前面的路径并将传参到/:后面的变量
+                    path:'/:content',
+                    component: Ball
+                }
+            ]
+        })
+
+        new Vue({
+            el:"#app",
+            router:router
+        })
+    </script>
+    
+</body>
+</html>
+
+<!-- 
+    动态路由使用场景：如"/:id"，id处是传入的参数，所有id都会加载同一个组件，
+    但是会根据id不同展示不同的内容。如知乎页面中点击不同的详情页，组件相同，
+    但是展示不同的内容。
+    1.通过<router-link to="/aaa">AAA</router-link>绑定跳转
+    2.<router-view></router-view>即是组件的位置
+    3.路由实例化，将哈希路径和自定义的组件绑定在一起，一旦哈希变化，就会渲染为哈希对应的组件
+    4.在vue中挂载创建的路由对象
+-->

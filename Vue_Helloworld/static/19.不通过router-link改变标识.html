@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 为选中的标签添加样式 -->
+    <style>
+        .router-link-exact-active.router-link-active{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 将最终的默认的标签<a></a>改为<span></span> -->
+        <router-link to="/aaa" tag="span">AAA</router-link>
+        <router-link to="/bbb">BBB</router-link>
+        <button @click="changeUrl()">音乐</button>
+        <br>
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var comA = {
+            template: `<div>comA组件</div>`
+        }
+        var comB = {
+            template: `<div>comB组件</div>`
+        }
+        var comC = {
+            template: `<div>comC组件</div>`
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:"/aaa",
+                    component:comA
+                },
+                {
+                    path:"/bbb",
+                    component:comB
+                },
+                {
+                    path:"/ccc",
+                    component:comC
+                }
+            ]
+        })
+
+        new Vue({
+            el: "#app",
+            router:router,
+            methods:{
+                changeUrl(){
+                    //获取路由对象，改变路由的标识，并渲染对应的组件
+                    this.$router.push("/ccc")
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
+
+<!--
+    1.可以通过设置事件调用this.$router.push("")方法，改变路由的标识，并渲染对应的组件。
+    2.<router-link to=""><router-link>标签在前端页面中最终会变成<a></a>标签，
+    可以设置tag属性<router-link to="/aaa" tag="span">AAA</router-link>改为<span></span>标签，
+    如果选中了标签，会自动设置类名，变成<a href="#/aaa" class="router-link-exact-active router-link-active"></a>
+    可以通过类名来锁定点击的标签，通过style样式进行渲染。   
+-->

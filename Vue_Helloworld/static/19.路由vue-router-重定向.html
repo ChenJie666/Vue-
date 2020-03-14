@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/aaa">首页</router-link>
+        <router-link to="/bbb">热点</router-link>
+        <router-link to="/ccc">简讯</router-link>
+        <br>
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var comA = {
+            template:`<dev>comA</dev>`
+        }
+        var comB = {
+            template:`<dev>comB</dev>`
+        }
+        var comC = {
+            template:`<dev>comC</dev>`
+        }
+
+        var router = new VueRouter({
+            routes:[
+                //对请求路径的哈希为'/'的所有请求都重定向到'/aaa'
+                //通过path属性进行绑定
+                {
+                    path:'/',
+                    redirect:{
+                        path:'/aaa'
+                    }
+                },
+                //通过name属性进行绑定
+                {
+                    path:'/aaa',
+                    redirect:{
+                        name:'bbb'
+                    }
+                },
+
+                {
+                    path: '/aaa',
+                    component: comA
+                },
+                {
+                    name: 'bbb',
+                    path: '/bbb',
+                    component: comB,
+                    //redirect也可以写在这里
+                    redirect:{
+                        path: '/ccc'
+                    }
+                },
+                {
+                    path: '/ccc',
+                    component: comC
+                },
+                //如果用户输入的路由有误，那么直接重定向到主页
+                //需要注意放置的顺序，从上到下进行匹配,重定向后重新走一遍匹配规则
+                {
+                    path: '*',
+                    redirect: {
+                        path: '/aaa'
+                    }
+                }
+            ]
+        })
+
+        new Vue({
+            el: "#app",
+            router:router
+        })
+    </script>
+</body>
+</html>
+
+<!-- 
+    重定向：强制修改url标识，重新发起请求
+    1.在路由的实例化中将需要重定向的路径redirect到目标路径
+-->
